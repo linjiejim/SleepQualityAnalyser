@@ -1,0 +1,10 @@
+{
+  "timestampe": 20191016,
+  "modelname": "raspberrypi",
+  "temperature": 22,
+  "humidity": 70,
+  "brighteness": 66,
+  "rip": true,
+  "noise": 50,
+  "airquality": 0
+}
