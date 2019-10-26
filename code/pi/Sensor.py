@@ -47,13 +47,11 @@ class Sensor:
 		return temp, humi 
 
 	def read_brightness(self):
-		vals = read_adc()
-		brig = vals[PIN_ADC_BRIGHTNESS]
+		brig = mcp.read_adc(PIN_ADC_BRIGHTNESS)
 		return brig 
 
 	def read_noise(self):
-		vals = read_adc()
-		nois = vals[PIN_ADC_NOISE]
+		nois = mcp.read_adc(PIN_ADC_NOISE)
 		return nois
 
 	def read_rip(motion):
@@ -61,6 +59,7 @@ class Sensor:
 		return moti 
 
 	def read_air_quality(self):
+		airq = 66
 		return airq 
 
 	def read_adc():

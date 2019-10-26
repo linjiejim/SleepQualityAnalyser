@@ -1,4 +1,5 @@
-import Sensor
+from Sensor import Sensor
+import time 
 
 ss = Sensor()
 
@@ -24,5 +25,5 @@ while True:
       airquality))
 
   # sleep for 1 second 
-  time.slepp(1)
+  time.sleep(1)
   
