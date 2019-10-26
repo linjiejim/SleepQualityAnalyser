@@ -13,12 +13,12 @@ Supported Sensors
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 import RPi.GPIO as GPIO
-
+import Adafruit_DHT
 
 import time
 
 # Pins connection
-PIN_DHT11 = 21
+PIN_DHT22 = 21
 PIN_PIR = 11
 
 PIN_ADC_CLK = 18
@@ -41,13 +41,20 @@ class Sensor:
 		pass
 
 	def read_temperature_humidity(self):
+		humi, temp = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, PIN_DHT22)
+		#humi = int(humi * 1000) / 1000
+		#temp = int(temp * 1000) / 1000
 		return temp, humi 
 
 	def read_brightness(self):
+		vals = read_adc()
+		brig = vals[PIN_ADC_BRIGHTNESS]
 		return brig 
 
 	def read_noise(self):
-		return nois 
+		vals = read_adc()
+		nois = vals[PIN_ADC_NOISE]
+		return nois
 
 	def read_rip(motion):
 		moti = GPIO.input(PIN_PIR)
@@ -58,6 +65,6 @@ class Sensor:
 
 	def read_adc():
 		vals = [0]*8
-    	for i in range(8):
-        	vals[i] = mcp.read_adc(i)
+		for i in range(8):
+				vals[i] = mcp.read_adc(i)
 		return vals
