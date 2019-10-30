@@ -26,11 +26,14 @@ while True:
 
   # store data to AWS RDS Mysql
   insert_stmt = (
-    "INSERT INTO SleepData(SleepDataDateTime, SleepDataTemp, SleepDataHumid, "
+    "INSERT INTO SleepData(SleepDataDateTime, SleepDataEpoch, SleepDataTemp, "
+    "SleepDataHumid, "
     "SleepDataBright, SleepDataNoise, SleepDataMotion, SleepDataAir) "
-    "VALUES(%s, %s, %s, %s, %s, %s, %s)"
+    "VALUES(%s, %s, %s, %s, %s, %s, %s, %s)"
   )
-  data = (datetime.datetime.now(), temperature, humidity, brightness,
+  data_time = datetime.datetime.now()
+  data = (data_time, int(date_time.timestamp()), temperature, humidity,
+          brightness,
           noise, motion, airquality)
   cursor.execute(insert_stmt, data)
 
