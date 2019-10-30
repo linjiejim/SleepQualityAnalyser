@@ -1,7 +1,19 @@
 from Sensor import Sensor
+
+import mysql.connector
+import datetime
 import time 
 
+mydb = mysql.connector.connect(
+  host="novice-tech.cotmblgcxfwk.ap-southeast-2.rds.amazonaws.com",
+  user="noviceTech",
+  password="Novicetech5047",
+  database="novicetech"
+)
 ss = Sensor()
+
+cursor = mydb.cursor()
+cursor.execute("TRUNCATE SleepData")
 
 while True:
 
@@ -11,6 +23,16 @@ while True:
   noise = ss.read_nosie()
   motion = ss.read_rip()
   airquality = ss.read_air_quality()
+
+  # store data to AWS RDS Mysql
+  insert_stmt = (
+    "INSERT INTO SleepData(SleepDataDateTime, SleepDataTemp, SleepDataHumid, "
+    "SleepDataBright, SleepDataNoise, SleepDataMotion, SleepDataAir) "
+    "VALUES(%s, %s, %s, %s, %s, %s, %s)"
+  )
+  data = (datetime.datetime.now(), temperature, humidity, brightness,
+          noise, motion, airquality)
+  cursor.execute(insert_stmt, data)
 
   # print the data collected
   print('Temperature:{}\n \
