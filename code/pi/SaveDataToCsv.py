@@ -28,7 +28,7 @@ mcp = Adafruit_MCP3008.MCP3008(clk=PIN_ADC_CLK, cs=PIN_ADC_CS, miso=PIN_ADC_MISO
 GPIO.setup(PIN_PIR, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # path name
-filepath = '../../data/'
+filepath = '/home/pi/SleepQualityAnalyser/data/'
 # file name
 filename = 'sleep_'+datetime.datetime.now().strftime("%Y_%M_%d_%H:%M:%S")+".csv"
 # title

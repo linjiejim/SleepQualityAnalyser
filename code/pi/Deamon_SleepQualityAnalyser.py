@@ -15,7 +15,7 @@ import time
 import subprocess
 
 # the program to be called
-file_name = 'SaveDataToCsv.py'
+file_name = '/home/pi/SleepQualityAnalyser/code/pi/SaveDataToCsv.py'
 
 # pins definition
 PIN_BTN = 16
